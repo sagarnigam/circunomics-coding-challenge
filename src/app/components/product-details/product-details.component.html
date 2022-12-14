@@ -1,0 +1,20 @@
+<mat-card class="details-card">
+  <mat-card-content>
+    <div>
+        <img src="{{speaker.picture.medium}}" alt="image" />
+    </div>
+    <div>
+      <h2>
+        {{
+          speaker.name.title +
+            " " +
+            speaker.name.first +
+            " " +
+            speaker.name.last
+        }}
+      </h2>
+      <p>{{ speaker.email }}</p>
+      <p>{{ speaker.gender }}</p>
+    </div>
+  </mat-card-content>
+</mat-card>

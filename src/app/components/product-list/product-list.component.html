@@ -1,0 +1,46 @@
+<div class="list-container">
+  <h1>Speaker List</h1>
+
+  <form [formGroup]="filterForm" class="filter-form">
+    <input matInput placeholder="Filter" formControlName="filter" />
+  </form>
+
+  <div class="mat-elevation-z8">
+    <table mat-table [dataSource]="dataSource" matSort>
+     
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Name</th>
+        <td mat-cell *matCellDef="let row">
+          {{ row.name.title + " " + row.name.first + " " + row.name.last }}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="email">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Email</th>
+        <td mat-cell *matCellDef="let row">{{ row.email }}%</td>
+      </ng-container>
+
+      <ng-container matColumnDef="nat">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Nationality</th>
+        <td mat-cell *matCellDef="let row">{{ row.nat }}</td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr
+        mat-row
+        *matRowDef="let row; columns: displayedColumns"
+        (click)="navigateToDetails(row)"
+      ></tr>
+
+      <!-- Row shown when there is no matching data. -->
+      <tr class="mat-row" *matNoDataRow>
+        <td class="mat-cell" colspan="4">No data matching the filter</td>
+      </tr>
+    </table>
+
+    <mat-paginator
+      [pageSizeOptions]="[5, 10, 25, 100]"
+      aria-label="Select page of users"
+    ></mat-paginator>
+  </div>
+</div>
